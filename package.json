@@ -1,0 +1,79 @@
+{
+  "name": "viator",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link": "^1.2.13",
+    "apollo-link-error": "^1.1.12",
+    "apollo-server-express": "^2.12.0",
+    "apollo-upload-client": "^13.0.0",
+    "cookie-parser": "^1.4.5",
+    "date-fns": "^2.11.1",
+    "express": "^4.17.1",
+    "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.3",
+    "jsonwebtoken": "^8.5.1",
+    "leaflet": "^1.6.0",
+    "markdown-it": "^10.0.0",
+    "markdown-it-container": "^2.0.0",
+    "prisma-client-lib": "^1.34.10",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.12.1",
+    "react": "^16.13.1",
+    "react-apollo": "^3.1.3",
+    "react-dom": "^16.13.1",
+    "react-leaflet": "^2.6.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-semantic-ui-datepickers": "^2.4.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2",
+    "shortid": "^2.2.15",
+    "styled-components": "^5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server:dev": "nodemon server/index.js --watch server/**/*.js",
+    "server:prod": "node server/index.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "airbnb",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "no-console": 0,
+      "react/jsx-filename-extension": 0
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.2",
+    "@testing-library/user-event": "^10.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.3",
+    "nodemon": "^2.0.3",
+    "prettier": "2.0.4",
+    "prisma": "^1.34.10"
+  }
+}

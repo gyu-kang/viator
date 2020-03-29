@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  caddy:
+    image: caddy:2.0.0-rc.3-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/caddy/dev:/etc/caddy
+      - ./data:/data
+      - ./uploads:/usr/share/caddy/uploads
+    environment:
+      SITE_ADDRESS: ${REACT_APP_DOMAIN}
+    depends_on:
+      - frontend
+  frontend:
+    image: node:12-alpine
+    working_dir: /app
+    ports:
+      - 3000
+    volumes:
+      - .:/app
+    stdin_open: true
+    command: yarn start
+    depends_on:
+      - backend
+  backend:
+    build: .
+    ports:
+      - 4000
+    volumes:
+      - .:/app
+    environment:
+      APP_ENV: dev
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - prisma
+  prisma:
+    build:
+      context: .
+      dockerfile: config/prisma/Dockerfile
+    ports:
+      - 4466
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: mysql
+            host: mariadb
+            port: 3306
+            user: root
+            password: ${DB_PASSWORD}
+            database: viator
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb:10.5
+    ports:
+      - 3306
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=viator

@@ -1,0 +1,14 @@
+{$SITE_ADDRESS}
+
+encode zstd gzip
+
+handle /graphql {
+    reverse_proxy backend:4000
+}
+handle /uploads/* {
+    root * /usr/share/caddy
+    file_server
+}
+handle {
+    reverse_proxy frontend:3000
+}

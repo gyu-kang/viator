@@ -1,0 +1,27 @@
+type User {
+  id: ID! @id
+  name: String! @unique
+  password: String!
+  passwordSalt: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  posts: [Post!]
+}
+
+type Post {
+  id: ID! @id
+  user: User! @relation(link: INLINE)
+  tags: [Tag!] @relation(link: TABLE)
+  title: String!
+  startDate: DateTime!
+  endDate: DateTime!
+  markdownText: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Tag {
+  id: ID! @id
+  name: String! @unique
+  posts: [Post!]
+}
